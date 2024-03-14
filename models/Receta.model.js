@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema, model } = mongoose;
 
 const recetaSchema = new mongoose.Schema({
     nombre: {
@@ -21,13 +22,7 @@ const recetaSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Usuario'
     },
-    opiniones: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Opinion'
-    }],
-    favoritosBy: [{ 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Usuario' }]
+    
 });
 
 

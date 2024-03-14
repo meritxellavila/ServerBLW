@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 
 const usuarioSchema = new Schema(
@@ -16,6 +17,9 @@ const usuarioSchema = new Schema(
       type: String,
       required: [true, "name is required."],
     },
+    favoritosBy: [{ 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Usuario' }],
   },
   {
     timestamps: true,
