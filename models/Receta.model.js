@@ -24,11 +24,15 @@ const recetaSchema = new mongoose.Schema({
     opiniones: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Opinion'
-    }]
+    }],
+    favoritosBy: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Usuario' }]
 });
 
 
 
-const Recetas = model("Recetas", recetaSchema);
 
-module.exports = Recetas;
+const Receta = model("Receta", recetaSchema);
+
+module.exports = Receta;
