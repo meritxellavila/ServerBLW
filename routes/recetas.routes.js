@@ -5,7 +5,7 @@ const Recetas = require("../models/Receta.model");
 const Usuarios = require("../models/Usuario.model")
 const Opiniones = require ("../models/Opiniones.model")
 
-// //POST "/api/recetas => ruta para crera receta"
+//POST "/api/recetas => ruta para crera receta"
 router.post("/", async (req, res, next) => {
   console.log(req.body);
 

@@ -13,10 +13,14 @@ router.get("/:id", isTokenValid, async (req, res, next) => {
       name: 1,
       email: 1,
     });
+    console.log(response);
+    
     res.status(200).json(response);
   } catch (error) {
     next(error);
   }
 }),
+
+  
 
 module.exports = router;

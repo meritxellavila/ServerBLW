@@ -12,8 +12,8 @@ const recetasRoutes = require("./recetas.routes")
 router.use("/recetas", recetasRoutes)
 
 //OPINIONES
-// const opinionesRoutes = require ("./opiniones.routes")
-// router.use("/opiniones", opinionesRoutes )
+const opinionesRoutes = require ("./opiniones.routes")
+router.use("/opiniones", opinionesRoutes )
 
 //USUARIOS
 const usuariosRoutes = require ("./usuarios.routes")
