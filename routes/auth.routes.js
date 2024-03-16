@@ -119,12 +119,12 @@ router.get("/verify", isTokenValid, (req, res, next) => {
 
 
 
-// router.get("/ejemplo-ruta-privada", isTokenValid, (req, res, next) => {
-//   console.log(req.headers);
-//   console.log(req.payload); // TODA RUTA QUE USE EL isTokenValid TIENE ACCESO A ESTO PARA SABER QUIEN ES EL USUARIO LOGEADO (EL USUARIO QUE ESTÁ HACIENDO LA LLAMADA)
+router.get("/ejemplo-ruta-privada", isTokenValid, (req, res, next) => {
+  console.log(req.headers);
+  console.log(req.payload); // TODA RUTA QUE USE EL isTokenValid TIENE ACCESO A ESTO PARA SABER QUIEN ES EL USUARIO LOGEADO (EL USUARIO QUE ESTÁ HACIENDO LA LLAMADA)
 
-//   res.json({ data: "data privada" });
-// });
+  res.json({ data: "data privada" });
+});
 
 // router.get(
 //   "/ejemplo-ruta-admin",

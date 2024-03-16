@@ -16,10 +16,10 @@ const usuarioSchema = new Schema(
     name: {
       type: String,
       required: [true, "name is required."],
-    },
-    favoritosBy: [{ 
-      type: mongoose.Schema.Types.ObjectId, 
-      ref: 'Usuario' }],
+     },
+    // favoritos: [{ 
+    //   type: mongoose.Schema.Types.ObjectId, 
+    //   ref: 'Receta' }],
   },
   {
     timestamps: true,

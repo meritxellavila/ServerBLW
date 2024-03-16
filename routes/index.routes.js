@@ -21,6 +21,6 @@ router.use("/usuarios", usuariosRoutes )
 
 //FAVORITOS 
 const favoritosRoutes = require ("./favoritos.routes")
-router.use ("/favoritos", favoritosRoutes)
+router.use("/favoritos", favoritosRoutes)
 
 module.exports = router;

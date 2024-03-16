@@ -21,6 +21,5 @@ router.get("/:id", isTokenValid, async (req, res, next) => {
   }
 }),
 
-  
 
 module.exports = router;

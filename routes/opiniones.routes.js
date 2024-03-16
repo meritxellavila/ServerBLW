@@ -5,7 +5,7 @@ const Receta = require("../models/Receta.model");
 const Usuario = require("../models/Usuario.model");
 
 //POST "/api/opiniones/opiniones => ruta para crera opiniones"
-router.post("/opiniones", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const { usuarioId, recetaId, comentario, valoracion, imagen } = req.body;
 
@@ -39,7 +39,7 @@ router.post("/opiniones", async (req, res) => {
 });
 
 ///GET "/api/opiniones/opiniones =>ruta para obtener todas las opiniones
-router.get("/opiniones", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         // todas las opiniones de la base de datos
         const opiniones = await Opiniones.find();
