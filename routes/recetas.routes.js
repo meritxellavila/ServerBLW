@@ -16,7 +16,6 @@ router.post("/", async (req, res, next) => {
     ingredientes,
     creadoPor,
     Opiniones,
-    FavoritosBy,
   } = req.body;
 
   try {
@@ -27,7 +26,6 @@ router.post("/", async (req, res, next) => {
       ingredientes,
       creadoPor,
       Opiniones,
-      FavoritosBy,
     });
 
     res.sendStatus(201).json({ message: "receta creada!", response });
@@ -50,6 +48,22 @@ router.get("/", (req, res, next) => {
     });
 });
 
+//GET"/api/recetas/usuarioId =>ruta para obtener todas las recetas de un usuario
+router.get("/:usuarioId", async (req, res) => {
+  try {
+    const usuarioId = req.params.usuarioId;
+
+    // Buscar todas las recetas creadas por el usuario con el ID proporcionado
+    const response = await Recetas.find({ creadoPor: usuarioId })
+    console.log(response);
+
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
 //GET "/api/recetas/recetasId" => obtener una receta especifico por id
 router.get("/:recetasId", async (req, res, next) => {
   try {
@@ -64,7 +78,8 @@ router.get("/:recetasId", async (req, res, next) => {
 
   //PUT "api/recetas/recetaId => actualiza/ modificar  receta por id
   router.put("/:recetasId", async (req, res, next) => {
-    const { nombre,
+    const { 
+      nombre,
       imagen,
       pasos,
       ingredientes,

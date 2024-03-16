@@ -19,6 +19,8 @@ router.use("/opiniones", opinionesRoutes )
 const usuariosRoutes = require ("./usuarios.routes")
 router.use("/usuarios", usuariosRoutes )
 
-
+//FAVORITOS 
+const favoritosRoutes = require ("./favoritos.routes")
+router.use ("/favoritos", favoritosRoutes)
 
 module.exports = router;
