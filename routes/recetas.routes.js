@@ -28,15 +28,16 @@ router.post("/", async (req, res, next) => {
       Opiniones,
     });
 
-    res.sendStatus(201).json({ message: "receta creada!", response });
+    res.status(201).json({ message: "receta creada!", response });
   } catch (error) {
     next(error);
   }
 });
 
-
 //GET "/api/recetas =>ruta para obtener todas las recetas
 router.get("/", (req, res, next) => {
+  // console.log("patata");
+  
   Recetas.find({})
 .populate("creadoPor")
     .then((recetas) => {
@@ -49,7 +50,9 @@ router.get("/", (req, res, next) => {
 });
 
 //GET"/api/recetas/usuarioId =>ruta para obtener todas las recetas de un usuario
-router.get("/:usuarioId", async (req, res) => {
+router.get("/porUsuario/:usuarioId", async (req, res) => {
+  // console.log("patata");
+  
   try {
     const usuarioId = req.params.usuarioId;
 
@@ -66,18 +69,25 @@ router.get("/:usuarioId", async (req, res) => {
 
 //GET "/api/recetas/recetasId" => obtener una receta especifico por id
 router.get("/:recetasId", async (req, res, next) => {
+  console.log("patata");
+  
   try {
-    const response = await Recetas.findById(req.params.recetasId)
-    // console.log(response);
+    const recetasId = req.params.recetasId;
+    console.log(recetasId);
     
+
+    const response = await Recetas.findById(recetasId)
+    // const response = await Recetas.find({ _id: recetasId })
+    console.log(response);    
     res.status(200).json(response);
   } catch (error) {
     next(error);
   }
 });
 
+
   //PUT "api/recetas/recetaId => actualiza/ modificar  receta por id
-  router.put("/:recetasId", async (req, res, next) => {
+  router.put("/porReceta/:recetasId", async (req, res, next) => {
     const { 
       nombre,
       imagen,

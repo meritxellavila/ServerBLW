@@ -109,6 +109,16 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+ // DELETE "/api/auth/usurioId =>elimina una usuario por id
+ router.delete("/:usurioId", async (req, res, next) => {
+  try {
+    await User.findByIdAndDelete(req.params.usuarioId);
+    res.status(202).json({ message: "usuario borrada" });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // GET "/api/auth/verify" => validar el token e indicar al cliente que el usuario está autenticado
 router.get("/verify", isTokenValid, (req, res, next) => {
   console.log(req.payload);
