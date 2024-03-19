@@ -15,7 +15,7 @@ router.post("/", async (req, res, next) => {
     pasos,
     ingredientes,
     creadoPor,
-    Opiniones,
+     Opiniones,
   } = req.body;
 
   try {
@@ -36,9 +36,7 @@ router.post("/", async (req, res, next) => {
 
 //GET "/api/recetas =>ruta para obtener todas las recetas
 router.get("/", (req, res, next) => {
-  // console.log("patata");
-  
-  Recetas.find({})
+ Recetas.find({})
 .populate("creadoPor")
     .then((recetas) => {
       console.log("Receta recuperada ->", recetas);

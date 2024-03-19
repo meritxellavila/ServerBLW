@@ -19,8 +19,9 @@ const recetaSchema = new mongoose.Schema({
         required: true
     },
     creadoPor: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Usuario'
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'Usuario'
+         type: mongoose.Schema.Types.Mixed, required: true  
     },
     
 });
