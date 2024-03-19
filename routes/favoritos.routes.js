@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Favoritos = require("../models/favorito.model");
+const Favoritos = require("../models/Favorito.model");
 
 const Recetas = require("../models/Receta.model");
 const Usuarios = require("../models/Usuario.model");
