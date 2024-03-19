@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const opinionSchema = new mongoose.Schema({
-    usuario: {
+    usuarioId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Usuario'
     },
@@ -16,13 +16,11 @@ const opinionSchema = new mongoose.Schema({
         min: 1,
         max: 5
     },
-    imagen: {
-        type: String,
-        default: "https://www.instintodenido.com/wp-content/uploads/blw-mixto.jpg" 
-    },
-    receta: {
+    
+    recetaId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Receta'
+        ref: 'Receta',
+        required: true
     }
 });
 
