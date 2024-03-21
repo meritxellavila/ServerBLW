@@ -96,6 +96,7 @@ router.post("/login", async (req, res, next) => {
     const payload = {
       _id: foundUser._id,
       email: foundUser.email,
+      name: foundUser.name,
     };
 
     const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
@@ -112,7 +113,7 @@ router.post("/login", async (req, res, next) => {
  // DELETE "/api/auth/usurioId =>elimina una usuario por id
  router.delete("/:usurioId", async (req, res, next) => {
   try {
-    await User.findByIdAndDelete(req.params.usuarioId);
+    await User.findByIdAndDelete(req.params.usurioId);
     res.status(202).json({ message: "usuario borrada" });
   } catch (error) {
     next(error);
@@ -129,11 +130,37 @@ router.get("/verify", isTokenValid, (req, res, next) => {
 
 
 
-router.get("/ejemplo-ruta-privada", isTokenValid, (req, res, next) => {
+router.get("/perfil", isTokenValid, async(req, res, next) => {
   console.log(req.headers);
-  console.log(req.payload); // TODA RUTA QUE USE EL isTokenValid TIENE ACCESO A ESTO PARA SABER QUIEN ES EL USUARIO LOGEADO (EL USUARIO QUE ESTÁ HACIENDO LA LLAMADA)
+  console.log(req.payload._id); // TODA RUTA QUE USE EL isTokenValid TIENE ACCESO A ESTO PARA SABER QUIEN ES EL USUARIO LOGEADO (EL USUARIO QUE ESTÁ HACIENDO LA LLAMADA)
+  try {
+    const response = await User.findById(loggedId);
+    console.log(response);
+    res.status(200).json({ data: "data privada", response });
+  } catch (error) {
+    next(error);
+  }
+});
 
-  res.json({ data: "data privada" });
+ // PUT "/api/auth/usurioId =>edita una usuario por id
+ router.put("/:usurioId", async (req, res, next) => {
+  const { 
+    name,
+    email,
+  } = req.body;
+  try {
+    const response = await User.findByIdAndUpdate(
+      req.params.usurioId,{
+        name,
+        email,
+      }, { new: true });
+      console.log(response);
+      
+      
+    res.status(202).json({ message: "usuario editado", response });
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;

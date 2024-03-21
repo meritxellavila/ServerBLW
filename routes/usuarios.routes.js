@@ -9,7 +9,7 @@ const { isTokenValid } = require("../middlewares/auth.middlewares");
 
 router.get("/:id", isTokenValid, async (req, res, next) => {
   try {
-    const response = await User.findById(req.params.id).select({
+    const response = await Usuarios.findById(req.params.id).select({
       name: 1,
       email: 1,
     });
@@ -20,6 +20,7 @@ router.get("/:id", isTokenValid, async (req, res, next) => {
     next(error);
   }
 }),
+
 
 
 module.exports = router;

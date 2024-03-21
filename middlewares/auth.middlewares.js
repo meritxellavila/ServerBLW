@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 
+
+//toda la autenticazion de los heders 
 function isTokenValid(req, res, next) {
   try {
     // intentar recibir el token
@@ -15,7 +17,7 @@ function isTokenValid(req, res, next) {
 
     console.log(payload);
 
-    req.payload = payload
+    req.payload = payload//identifica el usuario logado
     // dar acceso a cualquier ruta que use este middleware a saber QUIEN está haciendo la llamada
 
     next() // continua con la ruta
