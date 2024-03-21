@@ -23,4 +23,10 @@ router.use("/usuarios", usuariosRoutes )
 const favoritosRoutes = require ("./favoritos.routes")
 router.use("/favoritos", favoritosRoutes)
 
+
+
+const uploadRoutes = require("./upload.routes");
+router.use("/upload", uploadRoutes);
+
+
 module.exports = router;

@@ -8,7 +8,7 @@ const recetaSchema = new mongoose.Schema({
     },
     imagen: {
         type: String,
-        default: "https://www.instintodenido.com/wp-content/uploads/blw-mixto.jpg" 
+        
     },
     pasos: {
         type: [String],
