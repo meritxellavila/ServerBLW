@@ -38,4 +38,13 @@ router.get("/recetas/:recetaId/opiniones", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+router.delete("/:opinionesId", async (req, res, next) => {
+  try {
+    await Opiniones.findByIdAndDelete(req.params.opinionesId);
+    res.status(202).json({ message: "opinion borrada" });
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;
