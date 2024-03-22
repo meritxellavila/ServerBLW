@@ -44,21 +44,6 @@ router.get("/", (req, res, next) => {
       });
   });
   
-// //GET "api"/favoritos => obtener favoritos por idUsuario
-// router.get("/:usuarioId", async (req, res) => {
-//     try {
-//       const usuarioId = req.params.usuarioId;
-  
-//       // Buscar todas las recetas creadas por el usuario con el ID proporcionado
-//       const response = await Favoritos.find({ usuarioId: usuarioId })
-//       console.log(response);
-  
-//       res.status(200).json(response);
-//     } catch (error) {
-//       res.status(500).json({ message: error.message });
-//     }
-//   });
-
 
 router.get('/:usuarioId/recetas/:recetasId', async (req, res) => {
   try {
