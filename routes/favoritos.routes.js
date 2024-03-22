@@ -44,30 +44,54 @@ router.get("/", (req, res, next) => {
       });
   });
   
-//GET "api"/favoritos => obtener favoritos por idUsuario
-router.get("/:usuarioId", async (req, res) => {
-    try {
-      const usuarioId = req.params.usuarioId;
+// //GET "api"/favoritos => obtener favoritos por idUsuario
+// router.get("/:usuarioId", async (req, res) => {
+//     try {
+//       const usuarioId = req.params.usuarioId;
   
-      // Buscar todas las recetas creadas por el usuario con el ID proporcionado
-      const response = await Favoritos.find({ usuarioId: usuarioId })
-      console.log(response);
+//       // Buscar todas las recetas creadas por el usuario con el ID proporcionado
+//       const response = await Favoritos.find({ usuarioId: usuarioId })
+//       console.log(response);
   
-      res.status(200).json(response);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-  });
+//       res.status(200).json(response);
+//     } catch (error) {
+//       res.status(500).json({ message: error.message });
+//     }
+//   });
 
 
-//DEL => eliminar favorito por Id de favorito
-router.delete("/:favoritosId", async (req, res, next) => {
-    try {
-      await Favoritos.findByIdAndDelete(req.params.favoritosId);
-      res.status(202).json({ message: "favorito borrado" });
-    } catch (error) {
-      next(error);
+router.get('/:usuarioId/recetas/:recetasId', async (req, res) => {
+  try {
+    const { usuarioId, recetasId } = req.params;
+
+    // Buscar el favorito en la base de datos utilizando los IDs proporcionados
+    const favorito = await Favoritos.findOne({ usuarioId, recetasId })
+      .populate('recetasId') // Populate para obtener los detalles completos de la receta
+      .populate('usuarioId'); // Populate para obtener los detalles completos del usuario
+
+    // Verificar si se encontró el favorito
+    if (!favorito) {
+      return res.status(404).json({ error: 'Favorito no encontrado' });
     }
-  });
+
+    // Devolver el favorito encontrado
+    res.status(200).json(favorito);
+  } catch (error) {
+    // Manejar cualquier error que ocurra durante el proceso
+    console.error(error);
+    res.status(500).json({ error: 'Error al obtener el favorito' });
+  }
+});
+
+
+// //DEL => eliminar favorito por Id de favorito
+// router.delete("/:favoritosId", async (req, res, next) => {
+//     try {
+//       await Favoritos.findByIdAndDelete(req.params.favoritosId);
+//       res.status(202).json({ message: "favorito borrado" });
+//     } catch (error) {
+//       next(error);
+//     }
+//   });
   
 module.exports = router;
