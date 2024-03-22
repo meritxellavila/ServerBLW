@@ -20,7 +20,7 @@ function isTokenValid(req, res, next) {
     req.payload = payload//identifica el usuario logado
     // dar acceso a cualquier ruta que use este middleware a saber QUIEN está haciendo la llamada
 
-    next() // continua con la ruta
+    next() 
   } catch (error) {
     res.status(401).json({ errorMessage: "Token no valido o expirado" });
   }

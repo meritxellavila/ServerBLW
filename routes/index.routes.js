@@ -21,11 +21,8 @@ const usuariosRoutes = require ("./usuarios.routes")
 router.use("/usuarios", usuariosRoutes )
 
 //FAVORITOS 
-const favoritosRoutes = require ("./favoritos.routes")
-router.use("/favoritos", favoritosRoutes)
-
-
-
+// const favoritosRoutes = require ("./favoritos.routes")
+// router.use("/favoritos", favoritosRoutes)
 
 const uploadRoutes = require("./upload.routes");
 router.use("/upload", uploadRoutes);
