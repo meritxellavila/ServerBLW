@@ -17,9 +17,7 @@ const usuarioSchema = new Schema(
       type: String,
       required: [true, "name is required."],
      },
-    // favoritos: [{ 
-    //   type: mongoose.Schema.Types.ObjectId, 
-    //   ref: 'Receta' }],
+     recetas: { type: mongoose.Schema.Types.ObjectId, ref: 'Receta' },
   },
   {
     timestamps: true,

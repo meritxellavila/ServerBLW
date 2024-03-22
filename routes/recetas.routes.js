@@ -19,6 +19,12 @@ router.post("/", async (req, res, next) => {
   } = req.body;
 
   try {
+
+    const usuario = await Usuarios.findById(creadoPor);
+    if (!usuario) {
+        return res.status(404).json({ mensaje: 'Usuario no encontrado.' });
+    }
+
     const response = await Recetas.create({
       nombre,
       imagen,
@@ -126,6 +132,9 @@ router.get("/:recetasId", async (req, res, next) => {
       next(error);
     }
   });
+
+
+
 
 
 module.exports = router;
